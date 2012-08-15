@@ -1,0 +1,18 @@
+#!/usr/bin/python
+
+import os
+import sys
+
+name = input('Name: ')
+path = input('Path: ' )
+package = input('Package: ')
+activity = input('Activty: ' )
+os.system('android list targets')
+target = input('Target: ')
+
+cmd = 'android create project -n %s -p %s -k %s -a %s -t %s' % (name,path,package,activity,target)
+os.system(cmd)
+
+os.system('android update project -p ' + path)
+
+
