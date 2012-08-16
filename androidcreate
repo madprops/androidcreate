@@ -16,4 +16,18 @@ os.system(cmd)
 cmd = 'android update project -n %s -p %s -t %s' % (name,path,target)
 os.system(cmd)
 
+os.chdir(path)
+
+f = open(os.getcwd() + '/launchdebug', 'w')
+s = """#!/usr/bin/python
+import os
+os.system('ant debug')
+os.system('adb install -r bin/{name}-debug.apk')
+"""
+s = s.format(name=name)
+f.write(s)
+f.close()
+
+os.system('chmod +x launchdebug')
+
 
