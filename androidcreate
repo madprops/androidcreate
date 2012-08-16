@@ -3,6 +3,7 @@
 import os
 import sys
 
+# Ask for arguments
 name = input('Name: ')
 path = input('Path: ' )
 package = input('Package: ')
@@ -10,14 +11,17 @@ activity = input('Activity: ' )
 os.system('android list targets')
 target = input('Target: ')
 
+# Create project
 cmd = 'android create project -n %s -p %s -k %s -a %s -t %s' % (name,path,package,activity,target)
 os.system(cmd)
 
+# Update project
 cmd = 'android update project -n %s -p %s -t %s' % (name,path,target)
 os.system(cmd)
 
 os.chdir(path)
 
+# Create a script to build an apk and launch it in the target device
 f = open(os.getcwd() + '/launchdebug', 'w')
 s = """#!/usr/bin/python
 import os
