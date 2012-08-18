@@ -25,6 +25,7 @@ os.chdir(path)
 f = open(os.getcwd() + '/launchdebug', 'w')
 s = """#!/usr/bin/python
 import os
+os.system('rm -R bin gen')
 os.system('ant debug')
 os.system('adb install -r bin/{name}-debug.apk')
 """
